@@ -150,6 +150,12 @@
             connection.accept(request);
             // self.onParticipantConnected(request.userid);
                 };
+
+            connection.onleave = function(e) {
+            console.log("Participant left: "+e);
+           // delete self._blobURLs[e.userid];
+           // connection.onParticipantLeft(e.userid);
+                };
             connection.onstream = function(e) {
                 console.log("onstream "+ e.type);
                 videos.appendChild(e.mediaElement);
@@ -171,6 +177,7 @@
                 }
             };
             connection.onNewSession = function(session) {
+                console.log("onNewSession");
                 if (role == 'Anonymous Viewer') {
                     session.join({
                         oneway: true
