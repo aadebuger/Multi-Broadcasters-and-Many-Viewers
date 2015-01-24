@@ -1,0 +1,96 @@
+<!--
+> Muaz Khan     - github.com/muaz-khan 
+> MIT License   - www.webrtc-experiment.com/licence
+> Documentation - www.RTCMultiConnection.org
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/html">
+<head>
+
+<script type="text/javascript" src="https://raw.githubusercontent.com/aadebuger/RTCMultiConnection/master/RTCMultiConnection.js"></script>
+
+
+<title>OneWay Screen & Two-Way Audio using RTCMultiConnection</title>
+
+<!--
+<link rel="stylesheet" href="//cdn.webrtc-experiment.com/style.css">
+-->
+<style>
+video {
+    vertical-align: top;
+    width: 60%;
+}
+audio {
+    float: right;
+}
+</style>
+</head>
+<body>
+
+<h1>OneWay Screen & Two-Way Audio using <a href="http://www.rtcmulticonnection.org/">RTCMultiConnection</a>
+</h1>
+<br />
+<br />
+<button id="share-screen-and-audio">Share Screen + Audio</button>
+<hr />
+<div id="container"></div>
+<!--
+<script src="//cdn.webrtc-experiment.com/RTCMultiConnection.js">
+</script>
+
+<script src="//cdn.webrtc-experiment.com/firebase.js">
+-->
+
+<script src="https://cdn.firebase.com/v0/firebase.js">
+
+</script>
+
+<script>
+var connection = new RTCMultiConnection();
+connection.session = {
+    audio: true,
+    video: true
+};
+console.log("connection"+ connection);
+
+var sessions = {};
+connection.onNewSession = function(session) {
+    console.log("onNewSession");
+    // if room is not transmitted once;
+    // "onNewSession" will be called multiple times for same session;
+    // we need to store session-id in an object.
+    if (sessions[session.sessionid]) return;
+    sessions[session.sessionid] = session;
+
+    session.join({
+        audio: true
+    });
+};
+
+connection.onstream = function(e) {
+    document.querySelector('div#container').appendChild(e.mediaElement);
+};
+console.log("start connect");
+connection.connect();
+
+console.log("sstart connect ok");
+console.log("uerySelector('#share-screen-and-audio')="+document.querySelector('#share-screen-and-audio'));
+document.querySelector('#share-screen-and-audio').onclick = function() {
+    console.log("share-screen-and-audio click");
+    this.disabled = true;
+    connection.open();
+};
+</script>
+
+<p>This demo uses <a href="http://www.RTCMultiConnection.org/docs/">RTCMultiConnection.js</a> to:</p>
+<ol>
+    <li>Share screen in one-way.</li>
+    <li>Share audio in two-way; among all users.</li>
+</ol>
+<pre>
+    // initiator's session initiator.session = { audio: true, screen: true }; participant.onNewSession = function (session) { session.join(
+    <strong>{ audio: true }</strong> ); };
+</pre>
+</body>
+</html>

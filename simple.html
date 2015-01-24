@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/html">
+<head>
+<!--
+<script type="text/javascript" src="http://www.rtcmulticonnection.org/latest.js"></script>
+-->
+
+<script type="text/javascript" src="https://raw.githubusercontent.com/aadebuger/RTCMultiConnection/master/RTCMultiConnection.js"></script>
+<style type="text/css">
+video {
+    width: 30%;
+}
+
+button[disabled] {
+    background: rgba(216, 205, 205, 0.2);
+    border: 1px solid rgb(233, 224, 224);
+}
+</style>
+</head>
+<body>
+
+<hr />
+<button id="open-room">Open Room</button>
+<button id="join-room">Join Room</button>
+<hr />
+<script>
+// https://github.com/muaz-khan/RTCMultiConnection#1-link-the-library
+
+// channel-id
+var MODERATOR_CHANNEL_ID = 'ABCDEF-' + window.RMCDefaultChannel; 
+
+var MODERATOR_SESSION_ID = 'XYZ';    // room-id
+var MODERATOR_ID         = 'JKL';    // user-id
+var MODERATOR_SESSION    = {         // media-type
+    audio: true,
+    video: true
+};
+var MODERATOR_EXTRA      = {};       // empty extra-data
+
+// moderator
+document.getElementById('open-room').onclick = function() {
+    this.disabled = true;
+
+    var moderator = new RTCMultiConnection(MODERATOR_CHANNEL_ID);
+    moderator.session = MODERATOR_SESSION;
+    moderator.userid = MODERATOR_ID;
+    moderator.extra = MODERATOR_EXTRA;
+    moderator.open({
+        dontTransmit: true,
+        sessionid: MODERATOR_SESSION_ID
+    });
+};
+
+// participants
+document.getElementById('join-room').onclick = function() {
+    this.disabled = true;
+    var participants = new RTCMultiConnection(MODERATOR_CHANNEL_ID);
+    participants.join({
+        sessionid: MODERATOR_SESSION_ID,
+        userid: MODERATOR_ID,
+        extra: MODERATOR_EXTRA,
+        session: MODERATOR_SESSION
+    });
+};
+</script>
+</body>
+</html>
