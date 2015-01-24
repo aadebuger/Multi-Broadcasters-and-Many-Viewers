@@ -146,6 +146,7 @@
                 oneway: role == 'Anonymous Viewer'
             };
             connection.onstream = function(e) {
+                console.log("onstream "+ e.type);
                 videos.appendChild(e.mediaElement);
                 if (e.type == 'remote') {
                     // because "viewer" joined room as "oneway:true"
