@@ -145,6 +145,11 @@
                 video: true,
                 oneway: role == 'Anonymous Viewer'
             };
+            connection.onRequest = function (request) {
+            console.log("New participant request: ", request);
+            connection.accept(request);
+            // self.onParticipantConnected(request.userid);
+                };
             connection.onstream = function(e) {
                 console.log("onstream "+ e.type);
                 videos.appendChild(e.mediaElement);
