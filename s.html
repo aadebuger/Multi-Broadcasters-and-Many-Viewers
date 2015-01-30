@@ -7,7 +7,7 @@
 <html lang="en">
 
 <head>
-    <title>WebTeacher</title>
+    <title>WebStudent</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -66,11 +66,11 @@
     <!--
     <script type="text/javascript" src="https://raw.githubusercontent.com/aadebuger/RTCMultiConnection/master/RTCMultiConnection.js"></script>
 -->
+
     <script type="text/javascript" src="js/RTCMultiConnection.js"></script>
 
 
 <script src="https://cdn.firebase.com/v0/firebase.js"></script>
-
 </head>
 
 <body>
@@ -101,7 +101,7 @@
                <!--
                 <option>Broadcaster</option>
                -->
-                <option>Anonymous Viewer</option>
+                <option value="Anonymous Viewer">Student</option>
 
             </select>
             <button>Continue</button>
@@ -134,6 +134,7 @@
         </section>
 -->
         <script>
+        console.log("start");
         var select = document.querySelector('select');
         var button = document.querySelector('button');
         var videos = document.querySelector('#videos');
