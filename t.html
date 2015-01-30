@@ -7,7 +7,7 @@
 <html lang="en">
 
 <head>
-    <title>Multi-Broadcasters and Many Viewers using RTCMultiConnection ® Muaz Khan</title>
+    <title>WebTeacher</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -138,7 +138,7 @@
             console.log("button onclick");
             this.disabled = true;
             var role = select.value;
-            window.connection = new RTCMultiConnection();
+            window.connection = new RTCMultiConnection("aadebugerteacher");
             // dont-override-session allows you force RTCMultiConnection
             // to not override default session of participants;
             // by default, session is always overridden and set to the session coming from initiator!
