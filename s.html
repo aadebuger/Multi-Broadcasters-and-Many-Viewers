@@ -7,7 +7,7 @@
 <html lang="en">
 
 <head>
-    <title>Multi-Broadcasters and Many Viewers using RTCMultiConnection ® Muaz Khan</title>
+    <title>WebTeacher</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -75,8 +75,9 @@
 <body>
     <article>
         <header style="text-align: center;">
-            <h1>Multi-Broadcasters and Many Viewers using <a href="http://www.rtcmulticonnection.org/docs/">RTCMultiConnection.js</a>!</h1>
+            <h1>web teacher</a>!</h1>
             <p>
+            <!--
                 <a href="https://www.webrtc-experiment.com/">HOME</a>
                 <span> &copy; </span>
                 <a href="http://www.MuazKhan.com/" target="_blank">Muaz Khan</a> .
@@ -84,6 +85,7 @@
                 <a href="https://github.com/muaz-khan?tab=repositories" target="_blank" title="Github Profile">Github</a> .
                 <a href="https://github.com/muaz-khan/WebRTC-Experiment/issues?state=open" target="_blank">Latest issues</a> .
                 <a href="https://github.com/muaz-khan/WebRTC-Experiment/commits/master" target="_blank">What's New?</a>
+            -->
             </p>
         </header>
 
@@ -106,6 +108,7 @@
 
             <div id="videos"></div>
         </section>
+        <!--
         <section class="experiment">
             <h2>How it works?</h2>
             <ol>
@@ -128,7 +131,7 @@
                 <li>3rd Tab: Select "Broadcaster" if you want to setup two-way or multi-directional video chat with all other broadcasters.</li>
             </ol>
         </section>
-
+-->
         <script>
         var select = document.querySelector('select');
         var button = document.querySelector('button');
@@ -137,7 +140,7 @@
             console.log("button onclick");
             this.disabled = true;
             var role = select.value;
-            window.connection = new RTCMultiConnection();
+            window.connection = new RTCMultiConnection("aadebugerteacher");
             // dont-override-session allows you force RTCMultiConnection
             // to not override default session of participants;
             // by default, session is always overridden and set to the session coming from initiator!
