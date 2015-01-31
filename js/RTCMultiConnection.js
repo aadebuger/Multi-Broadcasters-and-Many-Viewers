@@ -2469,7 +2469,7 @@ NEW/Breaking changes:
             var firebase = new window.Firebase(connection.resources.firebaseio + channel);
             var jsonify = function(obj){
                 var seen = [];
-                var json = JSON.stringify(obj, function(key, value){
+                var json = JSON.stringify(obj, function(key, val){
                 
                 if (val != null && typeof val == "object") {
                       if (seen.indexOf(val) >= 0)
