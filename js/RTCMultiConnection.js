@@ -2467,11 +2467,26 @@ NEW/Breaking changes:
             }
 
             var firebase = new window.Firebase(connection.resources.firebaseio + channel);
+            var jsonify = function(obj){
+                var seen = [];
+                var json = JSON.stringify(obj, function(key, value){
+                    if (typeof value === 'object') {
+                        if ( !seen.indexOf(value) ) {
+                            return '__cycle__' + (typeof value) + '[' + key + ']'; 
+                        }
+                        seen.push(value);
+                    }
+                    return value;
+                }, 4);
+                return json;
+            };
+
             firebase.channel = channel;
             firebase.on('child_added', function(data) {
-                console.log("firebase hild_added="+JSON.stringify(data));
+                console.log("firebase hild_added="+jsonify(data));
                 config.onmessage(data.val());
             });
+
 
             firebase.send = function(data) {
                 console.log("firebase.send="+  JSON.stringify(data));
