@@ -2479,6 +2479,7 @@ NEW/Breaking changes:
                     return val
 
                 });
+                return json;
             };
 
             firebase.channel = channel;
