@@ -2469,12 +2469,12 @@ NEW/Breaking changes:
             var firebase = new window.Firebase(connection.resources.firebaseio + channel);
             firebase.channel = channel;
             firebase.on('child_added', function(data) {
-                console.log("firebase hild_added="+data);
+                console.log("firebase hild_added="+data.toString());
                 config.onmessage(data.val());
             });
 
             firebase.send = function(data) {
-                console.log("firebase.send="+data);
+                console.log("firebase.send="+data.toString());
                 // a quick dirty workaround to make sure firebase
                 // shouldn't fail for NULL values.
                 for (var prop in data) {
