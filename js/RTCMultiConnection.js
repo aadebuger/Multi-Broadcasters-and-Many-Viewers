@@ -2470,15 +2470,15 @@ NEW/Breaking changes:
             var jsonify = function(obj){
                 var seen = [];
                 var json = JSON.stringify(obj, function(key, value){
-                    if (typeof value === 'object') {
-                        if ( !seen.indexOf(value) ) {
-                            return '__cycle__' + (typeof value) + '[' + key + ']'; 
-                        }
-                        seen.push(value);
+                
+                if (val != null && typeof val == "object") {
+                      if (seen.indexOf(val) >= 0)
+                            return
+                seen.push(val)
                     }
-                    return value;
-                }, 4);
-                return json;
+                    return val
+
+                });
             };
 
             firebase.channel = channel;
